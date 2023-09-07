@@ -7,8 +7,10 @@
 ### Preface
 
 macOS 14 Sonoma is still in beta. Its official presentation is scheduled for a few weeks, so it is to be expected that there will be no major changes between now and the final version.
+
 I have been testing all the beta versions released by Apple and I have found a very stable system that, logically, has improved with each version but that, from the first one, allowed me to work with it in a way close to that of a daily use system.
 Sonoma required fewer changes to OpenCore and kexts than were necessary to install older systems such as Big Sur, which was a big challenge for developers. This time, minor changes allowed Sonoma to be installed almost immediately after the first beta version was released.
+
 Of course, there have been problems to work hard on, not all solved as of today. For now I will note the loss of Wi-Fi with Broadcom chipsets used in Mac models before 2017 and in Fenvi PCI-e cards, widely used in Hacks.
 
 ### Hardware
@@ -63,13 +65,16 @@ If you are on macOS 13.3 Ventura or earlier, it is recommended to go to 13.4 bef
 To create the USB installation media so you can install Sonoma from scratch:
 
 - Get the complete installation package from Apple's servers. I use the app [Download Full Installer ](https://github.com/perez987/DownloadFullInstaller)(original by scriptingosx), main window shows all versions available for download from Big Sur to Sonoma. To show beta versions, go to Settings >> SeedProgram and choose DeveloperSeed or PublicSeed
-<p align="center">
-<img width="512" src="DownloadFullInstaller.png">
-</p>
 - The package is downloaded as InstallAssistant-14.0-build.number.pkg, double click on the package to generate Install macOS Sonoma beta.app in the Applications folder
 - Format a USB stick of at least 16Gb with GUID partition scheme and Mac OS Plus (journaled) format, name it (e.g. USB)
 - Open Terminal and run this command
 `sudo /Applications/Install\ macOS\ beta.app/Contents/Resources/createinstallmedia --volume /Volumes/USB --no-interaction`
+
+<br>
+<p align="center">
+<img width="512" src="DownloadFullInstaller.png">
+</p>
+<br>
 
 At the end, you can reboot from the USB device and begin Sonoma installation.
 
@@ -144,18 +149,18 @@ These are the main details when configuring config.plist.
 
 There are 3 SMBIOS that I can use on my PC: iMac19,1 / iMacPro1,1 / MacPro7,1. My favorite is iMac19.1. Regarding the updates that are notified in Software Update and the size of the update (full or incremental package), there are some conditions to take into account.
 
-1. About obtaining Update notification
+1. Getting Update notification
 
 * iMac19.1 model (2019 iMac 27″) lacks a T2 security chip and, when using this SMBIOS model, you receive update notifications
 * iMacPro1,1 (iMac Pro 27″, late 2017) and MacPro7,1 (Mac Pro 2019) models do have a T2 chip and, when using these SMBIOS models, you do not receive update notifications
-* iMacPro1,1 and MacPro7,1 models receive update notifications if configured as vmm (virtual machine): revpatch=sbvmm in boot-args along with RestrictEvents.kext.
+* iMacPro1,1 and MacPro7,1 models receive update notifications if configured as vmm (virtual machine): `revpatch=sbvmm` in boot-args along with RestrictEvents.kext.
 
-2. About the size of the update (full or incremental)
+2. Size of the update (full or incremental)
 
-* Systems that have not been patched by OCLP (or the patch has been reverted), whether the SMBIOS model has a T2 chip or not, require revpatch=sbvmm in boot-args along with RestrictEvents.kext for incremental updates. Without this setting, they get full upgrade packages
+* Systems that have not been patched by OCLP (or the patch has been reverted), whether the SMBIOS model has a T2 chip or not, require `revpatch=sbvmm` in boot-args along with RestrictEvents.kext for incremental updates. Without this setting, they get full upgrade packages
 * All systems that have the OCLP root patch applied receive full-size updates.
 
-In summary, using iMac19.1 you get update notifications but the updates are full size.
+In summary, using iMac19.1 you get update notifications but the updates are full-size.
 
 After the system is updated, RestrictEvents.kext and the boot argument can be disabled because they are not required for normal Sonoma operation.
 
@@ -174,7 +179,9 @@ Dependant of AirPortBrcm4360.kext (IO80211Family.kext plugin)
 * device-id pci12e4,4331 >> BCM94331
 * device-id pci12e4,4353 >> BCM943224.
 
-Many users including myself have used Fenvi T919 or Fenvi HB1200 PCI-express cards (Wi-Fi + Bluetooth combo) which have worked since at least High Sierra OOTB, without the need for additional drivers, automatically installed by macOS and recognized as Airdrop and Bluetooth by macOS. The 2 Fenvi cards have the BCM4360 Wi-Fi chipset so they have stopped working in Sonoma. Bluetooth works well, as in Ventura and earlier. I have already commented that this is a serious inconvenience because the features associated with the Apple ecosystem are lost: Airdrop, Continuity, iPhone camera...
+Many users including myself have used Fenvi T919 or Fenvi HB1200 PCI-express cards (Wi-Fi + Bluetooth combo) which have worked since at least High Sierra OOTB, without the need for additional drivers, automatically installed by macOS and recognized as Airdrop and Bluetooth by macOS.
+
+The 2 Fenvi cards have the BCM4360 Wi-Fi chipset so they have stopped working in Sonoma. Bluetooth works well, as in Ventura and earlier. I have already commented that this is a serious inconvenience because the features associated with the Apple ecosystem are lost: Airdrop, Continuity, iPhone camera...
 
 As extra information, Macs that can officially update to Sonoma have these Broadcom Wi-Fi:
 
@@ -186,7 +193,9 @@ They are chipsets soldered on the board that are not sold loose on the market an
 
 ### Get back Fenvi Wi-Fi in Sonoma
 
-OCLP developers have been working on this issue and have released a Sonoma-specific OCLP 0.6.9 beta that makes Wi-Fi work again like it did in Ventura. I know it is not the ideal situation, many of us want to have the system as similar as possible to a real Mac and OCLP has to apply root patches that force it to work by relaxing some macOS security rules. But what the OCLP team has achieved is a very big advance. You have the instructions in this post (look for the **Hackintosh notes** section):
+OCLP developers have been working on this issue and have released a Sonoma-specific OCLP 0.6.9 beta that makes Wi-Fi work again like it did in Ventura. I know it is not the ideal situation, many of us want to have the system as similar as possible to a real Mac and OCLP has to apply root patches that force it to work by relaxing some macOS security rules. But what the OCLP team has achieved is a very big advance.
+
+You have the instructions in this post (look for the **Hackintosh notes** section):
 
 [Early preview of macOS Sonoma support now available!](https://github.com/dortania/OpenCore-Legacy-Patcher/pull/1077#issuecomment-1646934494)
 
@@ -201,30 +210,32 @@ In summary, this is what to do:
 
 * System Integrity Protection disabled: `csr-active-config=03080000`
 * AMFI disabled: `boot-args = amfi=0x80`
-* Secure Boot Model = Disabled
+* `Secure Boot Model = Disabled`
 * Block com.apple.iokit.IOSkywalkFamily, setting MinKernel to 23.0.0 to ensure the patch is applied only in Sonoma
 * Inject 3 extensions (Kexts folder and config.plist): IOSkywalk.kext, IO80211FamilyLegacy.kext and AirPortBrcmNIC.kext (IO80211FamilyLegacy.kext plugin) in this order, setting MinKernel to 23.0.0 to ensure they are injected only in Sonoma
 * Reboot and apply OCLP root patch (Modern Wireless Network).
 
 My Wi-Fi is Fenvi T919 so I have tried this pre-release version of OCLP 0.6.9. I have followed the instructions TO THE LETTER and they have worked well. I have Wi-Fi and Airdrop in Sonoma. Please note that khronokernel instructions must be followed EXACTLY. In short, this version of OCLP 0.6.9 beta works, at least for me.
-
+<br>
 <p align="center">
 <img width="640" src="Wifi active again.png">
 </p>
+<br>
+
 
 Don't forget to enable (`Enabled=True`) the 3 added extensions and the blocked extension.
 Important: com.apple.iokit.IOSkywalkFamily block must have `Enabled=True` and `Strategy=Exclude`. Otherwise, you may have kernel panic at boot.
 
 Incremental updates are lost with this configuration, updates can be notified from Software Update but the full installation package is downloaded and not the delta package that only contains changes from the previous version. To obtain incremental updates you have to revert the OCLP root patch and restart but you lose Wi-Fi, keep this in mind if you depend on it to have Internet access, in this case do not revert root patch before proceeding with the update.
 
-Note: After updating, you must ALWAYS reapply root patch since macOS overwrites the files modified by the patch, installing the original versions.
+Note: After updating, **you must ALWAYS reapply root patch** since macOS overwrites the files modified by the patch, installing the original versions.
 
 ### AMFI and AMFIpass.kext
 
 AMFI (Apple Mobile File Integrity) was originally seen on iOS but migrated to macOS in 10.12 Sierra, possibly in 2012 when GateKeeper and digitally signed code were introduced. In short, it is a technology that blocks the execution of non signed code. It consists of 2 components:
 
-* the /usr/libexec/amfid service run as root from /System/Library/LaunchDaemons/com.apple.MobileFileIntegrity.plist
-* the extension /System/Library/Extensions/AppleMobileFileIntegrity.kext.
+* `/usr/libexec/amfid` service run as root from '/System/Library/LaunchDaemons/com.apple.MobileFileIntegrity.plist`
+* `/System/Library/Extensions/AppleMobileFileIntegrity.kext`.
 
 AMFI must be enabled to grant third-party applications access to privacy-relevant services and/or peripherals, such as external cameras and microphones. But, with SIP and/or AMFI disabled (a necessary condition to apply OCLP root patches) the dialog box to grant access to those applications is not shown to the user so those peripherals simply cannot be used in applications like Zoom or MS Teams, for example.
 
