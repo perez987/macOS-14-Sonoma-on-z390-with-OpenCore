@@ -64,7 +64,7 @@ If you are on macOS 13.3 Ventura or earlier, it is recommended to go to 13.4 bef
 
 To create the USB installation media so you can install Sonoma from scratch:
 
-- Get the complete installation package from Apple's servers. I use the app [Download Full Installer ](https://github.com/perez987/DownloadFullInstaller)(original by scriptingosx), main window shows all versions available for download from Big Sur to Sonoma. To show beta versions, go to Settings >> SeedProgram and choose DeveloperSeed or PublicSeed
+- Get the complete installation package from Apple's servers. I use the app [Download Full Installer ](https://github.com/perez987/DownloadFullInstaller)(original by _scriptingosx_), main window shows all versions available for download from Big Sur to Sonoma. To show beta versions, go to Settings >> SeedProgram and choose DeveloperSeed or PublicSeed
 - The package is downloaded as InstallAssistant-14.0-build.number.pkg, double click on the package to generate Install macOS Sonoma beta.app in the Applications folder
 - Format a USB stick of at least 16Gb with GUID partition scheme and Mac OS Plus (journaled) format, name it (e.g. USB)
 - Open Terminal and run this command
@@ -215,13 +215,12 @@ In summary, this is what to do:
 * Inject 3 extensions (Kexts folder and config.plist): IOSkywalk.kext, IO80211FamilyLegacy.kext and AirPortBrcmNIC.kext (IO80211FamilyLegacy.kext plugin) in this order, setting MinKernel to 23.0.0 to ensure they are injected only in Sonoma
 * Reboot and apply OCLP root patch (Modern Wireless Network).
 
-My Wi-Fi is Fenvi T919 so I have tried this pre-release version of OCLP 0.6.9. I have followed the instructions TO THE LETTER and they have worked well. I have Wi-Fi and Airdrop in Sonoma. Please note that khronokernel instructions must be followed EXACTLY. In short, this version of OCLP 0.6.9 beta works, at least for me.
+My Wi-Fi is Fenvi T919 so I have tried this pre-release version of OCLP 0.6.9. I have followed the instructions TO THE LETTER and they have worked well. I have Wi-Fi and Airdrop in Sonoma. Please note that _khronokernel_ instructions must be followed EXACTLY. In short, this version of OCLP 0.6.9 beta works, at least for me.
 <br>
 <p align="center">
 <img width="640" src="Wifi active again.png">
 </p>
 <br>
-
 
 Don't forget to enable (`Enabled=True`) the 3 added extensions and the blocked extension.
 Important: com.apple.iokit.IOSkywalkFamily block must have `Enabled=True` and `Strategy=Exclude`. Otherwise, you may have kernel panic at boot.
