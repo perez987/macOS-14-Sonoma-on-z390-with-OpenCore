@@ -205,8 +205,8 @@ You have the instructions in this post (look for the **Hackintosh notes** sectio
 
 To download the most recent version of this Sonoma-specific OCLP beta branch, look for the link with this text:
 
-Latest builds for the sonoma-development branch can be found below:
-Nightly.link: OpenCore-Patcher.app (Sonoma Development).
+_Latest builds for the sonoma-development branch can be found below:_<br>
+_Nightly.link: OpenCore-Patcher.app (Sonoma Development)_.
 
 Note: OCLP developers prefer that we download OCLP beta from the link they post, for this reason I do not put a direct link here. It is a way to take users to the original post so that it can be read, which is highly recommended.
 
