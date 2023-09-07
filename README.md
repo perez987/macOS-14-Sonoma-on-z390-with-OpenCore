@@ -51,6 +51,8 @@ Of course, there have been problems to work hard on, not all solved as of today.
 
 Fenvi T919 Wi-Fi: macOS Sonoma has dropped support for all Broadcom Wi-Fi present on Macs before 2017. Fenvi T919 and HB1200 have BCM4360 chipsets (not supported) so Wi-Fi does not work in Sonoma. Bluetooth works fine. This is a serious inconvenience because functions related to the Apple ecosystem (Airdrop, Continuity Camera, etc.) are also lost. A fix is proposed later.
 
+---
+
 ### Installing macOS Sonoma
 
 I have updated macOS Ventura to Sonoma but creating USB boot media to install from scratch is another option for those who prefer to do it that way.
@@ -164,6 +166,8 @@ In summary, using iMac19.1 you get update notifications but the updates are full
 
 After the system is updated, RestrictEvents.kext and the boot argument can be disabled because they are not required for normal Sonoma operation.
 
+---
+
 ### Broadcom Wi-Fi stops working in Sonoma
 
 Apple has dropped support for Broadcom Wi-Fi chipset drivers used in pre-2017 Macs:
@@ -228,6 +232,8 @@ Important: com.apple.iokit.IOSkywalkFamily block must have `Enabled=True` and `S
 Incremental updates are lost with this configuration, updates can be notified from Software Update but the full installation package is downloaded and not the delta package that only contains changes from the previous version. To obtain incremental updates you have to revert the OCLP root patch and restart but you lose Wi-Fi, keep this in mind if you depend on it to have Internet access, in this case do not revert root patch before proceeding with the update.
 
 Note: After updating, **you must ALWAYS reapply root patch** since macOS overwrites the files modified by the patch, installing the original versions.
+
+---
 
 ### AMFI and AMFIpass.kext
 
