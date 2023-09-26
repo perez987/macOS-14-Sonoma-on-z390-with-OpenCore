@@ -6,7 +6,7 @@
 
 ### Preface
 
-Sonoma required fewer changes to OpenCore and kexts than were necessary to install older systems such as Big Sur, which was a big challenge for developers. This time, minor changes allowed Sonoma to be installed almost immediately after the first beta version was released. Of course, there have been problems to work hard on, not all solved as of today. For now I will note the loss of Wi-Fi with Broadcom chipsets used in Mac models before 2017 and in Fenvi PCI-e cards, widely used in Hacks. A fix has been provided by the OCLP team.
+Sonoma required fewer changes to OpenCore and kexts than were necessary to install older systems such as Big Sur, which was a big challenge for developers. This time, minor changes allowed Sonoma to be installed almost immediately after the first beta version was released. Of course, there have been problems to work hard on, not all solved as of today. For now I will note the loss of Wi-Fi with Broadcom chipsets used in Mac models before 2017 and in Fenvi PCI-e cards, widely used in Hackintoshes. A fix has been provided by the OCLP team.
 
 ### Hardware
 
