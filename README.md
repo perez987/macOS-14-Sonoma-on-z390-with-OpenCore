@@ -224,7 +224,7 @@ Incremental updates are lost with this configuration, updates can be notified fr
 
 Note: After updating, **you must ALWAYS reapply root patch** since macOS overwrites the files modified by the patch, installing the original versions.
 
-Note: OCLP has added basic support for 3rd party Broadcom chipsets, not officially supported as never shipped in any official Mac but supported by AirportBrcmFixup, thiese chipsets are used in Hackintoshes:
+Note: OCLP has added basic support for 3rd party Broadcom chipsets, not officially supported as never shipped in any official Mac but supported by AirportBrcmFixup, these chipsets are used in Hackintoshes:
 
 * device-id pci12e4,4357 >> BCM43225
 * device-id pci12e4,43B1 >> BCM4352
