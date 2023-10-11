@@ -150,7 +150,9 @@ There are 3 SMBIOS that I can use on my PC: iMac19,1 / iMacPro1,1 / MacPro7,1. M
 
 2. Size of the update (full or incremental)
 
-* Systems that have not been patched by OCLP (or the patch has been reverted), whether the SMBIOS model has a T2 chip or not, require `revpatch=sbvmm` in boot-args along with RestrictEvents.kext for incremental updates. Without this setting, they get full upgrade packages
+* Systems where the OCLP root patch has not been applied or has been reverted:
+	- iMac19,1 can get incremental updates
+	- iMacPro1,1 and MacPro7,1 require `revpatch=sbvmm` in boot-args along with RestrictEvents.kext to get incremental updates, without this setting you get full-size updates
 * All systems that have the OCLP root patch applied receive full-size updates.
 
 In summary, using iMac19.1 without RestrictEvents.kext I get update notifications but the updates are full-size.
