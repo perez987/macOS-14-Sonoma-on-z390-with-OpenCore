@@ -1,7 +1,7 @@
 ## macOS 14 Sonoma on Z390 Aorus Elite using OpenCore
 
 <p align="center">
-<img width="256" src="Sonoma icon.png">
+<img width="128" src="Sonoma icon.png">
 </p>
 
 ### Preface
