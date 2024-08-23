@@ -6,7 +6,7 @@
 
 ### Preface
 
-Sonoma required fewer changes to OpenCore and kexts than were necessary to install older systems such as Big Sur, which was a big challenge for developers. This time, minor changes allowed Sonoma to be installed almost immediately after the first beta version was released. Of course, there have been problems to work hard on, not all solved as of today. For now I will note the loss of Wi-Fi with Broadcom chipsets used in Mac models before 2017 and in Fenvi PCI-e cards, widely used in Hackintoshes. A fix has been provided by the OCLP developers.
+OpenCore and kexts needed fewer changes for macOS Sonoma than were necessary to install previous systems as Big Sur, which was a big challenge for developers. This time, minor changes allowed Sonoma to be installed almost immediately after the first beta version was released. Of course, there have been problems to work hard on, not all solved as of today. For now I will note the loss of Wi-Fi with Broadcom chipsets used in Mac models before 2017 and in Fenvi PCI-e cards, widely used in Hackintoshes. A fix has been provided by OCLP developers.
 
 ### Hardware
 
@@ -83,7 +83,7 @@ For the update to be successful, 2 parameters in config.plist related to securit
 - SIP enabled (`csr-active-config=00000000`.
 
 It is advisable to have Gatekeeper enabled (`sudo spctl –master-enable` in Terminal).
-Note: in last versions of Ventura, `sudo spctl –master-enable` (or disable) has been replaced by `sudo spctl –global-enable` (or disable). For now, both commands work fine.
+Note: in last versions of Ventura, `sudo spctl –master-enable` has been replaced by `sudo spctl –global-enable`. For now, both commands work fine.
 
 These security options can be changed after installation as they are not required out of updating macOS.
 
@@ -128,7 +128,8 @@ These are the main details when configuring config.plist.
 		- csr-active-config >> 00000000
 		- run-efi-updater >> No
 	- Delete >> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
-		- boot-args and csr-active-config
+		- boot-args
+		- csr-active-config
 
 - PlatformInfo
 	- Generic >> iMac19.1
@@ -148,13 +149,13 @@ There are 3 SMBIOS that I can use on my PC: iMac19,1 / iMacPro1,1 / MacPro7,1. M
 * iMacPro1,1 (iMac Pro 27″, late 2017) and MacPro7,1 (Mac Pro 2019) models do have a T2 chip and, when using these SMBIOS models, you do not receive update notifications
 * iMacPro1,1 and MacPro7,1 models receive update notifications if configured as vmm (virtual machine): `revpatch=sbvmm` in boot-args along with RestrictEvents.kext.
 
-2. Size of the update (full or incremental)
+2. Full or incremental update
 
 * Systems where the OCLP root patch has not been applied or has been reverted:
 	- iMac19,1 can get incremental updates
 	- iMacPro1,1 and MacPro7,1 require `revpatch=sbvmm` in boot-args along with RestrictEvents.kext to get incremental updates, without this setting you get full-size updates
 * All systems that have the OCLP root patch applied receive full-size updates.
 
-In summary, using iMac19.1 without RestrictEvents.kext I get update notifications but the updates are full-size.
+In summary, using iMac19.1 without RestrictEvents.kext I get update notifications but the updates are full-size (due to OCLP root patch).
 
 After the system is updated, RestrictEvents.kext and the boot argument can be disabled because they are not required for normal Sonoma operation.
