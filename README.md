@@ -67,7 +67,7 @@ To create the USB installation media so you can install Sonoma from scratch:
 
 <br>
 <p align="center">
-<img width="512" src="DownloadFullInstaller.png">
+<img width="512" src="DownloadFullInstaller-2.0.png">
 </p>
 <br>
 
