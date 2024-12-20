@@ -1,7 +1,7 @@
 ## macOS 14 Sonoma on Z390 Aorus Elite using OpenCore
 
 <p align="center">
-<img width="128" src="Sonoma icon.png">
+<img width="128" src="img/Sonoma icon.png">
 </p>
 
 ### Preface
@@ -67,7 +67,7 @@ To create the USB installation media so you can install Sonoma from scratch:
 
 <br>
 <p align="center">
-<img width="512" src="DownloadFullInstaller-2.0.png">
+<img width="512" src="img/DownloadFullInstaller-2.0.png">
 </p>
 <br>
 
